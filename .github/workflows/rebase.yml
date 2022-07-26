@@ -1,0 +1,40 @@
+name: rebase
+
+on:
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  rebase-main:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+      - name: rebase tmp by main
+        id: rebase_branch
+        run: |
+          git switch tmp
+
+          rebase_output_tmpfile=$(mktemp)
+          git rebase --rebase-merges origin/main 2>&1 | tee $rebase_output_tmpfile
+          SLACK_TEXT=''
+          if [[ -n $(cat $rebase_output_tmpfile | grep "Successfully rebased and updated") ]]; then
+            git push --force-with-lease origin tmp
+            echo "tmpブランチのrebase成功だゾウ！"
+          elif [[ -n $(cat $rebase_output_tmpfile | grep "Current branch tmp is up to date.") ]]; then
+            echo "tmpブランチは既に最新だゾウ！"
+          elif [[ -n $(cat $rebase_output_tmpfile | grep "CONFLICT (content): Merge conflict") ]]; then
+            git rebase --abort
+            echo "tmpブランチのrebase失敗だゾウ。コンフリクトが発生しています。\n[ git stash -u; git switch main; git pull origin main; git switch tmp; git pull origin tmp; git rebase main ]で確認してね。"
+          else
+            git rebase --abort
+            echo "tmpブランチのrebase失敗だゾウ。\n[ git stash -u; git switch main; git pull origin main; git switch tmp; git pull origin tmp; git rebase main ]で確認してね。"
+          fi
+          rm $rebase_output_tmpfile
