@@ -24,10 +24,10 @@ jobs:
 
           rebase_output_tmpfile=$(mktemp)
           git rebase --rebase-merges origin/main 2>&1 | tee $rebase_output_tmpfile
-          SLACK_TEXT=''
+          SLACK_TEXT='aaa'
           if [[ -n $(cat $rebase_output_tmpfile | grep "Successfully rebased and updated") ]]; then
             git push --force-with-lease origin tmp
-            echo "tmpブランチのrebase成功だゾウ！"
+            echo "tmpブランチのrebase成功だゾウ！\n${SLACK_TEXT}"
           elif [[ -n $(cat $rebase_output_tmpfile | grep "Current branch tmp is up to date.") ]]; then
             echo "tmpブランチは既に最新だゾウ！"
           elif [[ -n $(cat $rebase_output_tmpfile | grep "CONFLICT (content): Merge conflict") ]]; then
