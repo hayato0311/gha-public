@@ -8,7 +8,7 @@ echo "Finished ridgepole apply." >> $tmpfile
 RIDGEPOLE_APPLY_LOG=$(cat $tmpfile)
 
 curl -s -X POST -H 'Content-Type: application/json' \
-      -d '{\"text\":\"$RIDGEPOLE_APPLY_LOG\",\"icon_emoji\":\":release_shiyou:\"}' \
+      -d "{\"text\":\"$RIDGEPOLE_APPLY_LOG\",\"icon_emoji\":\":release_shiyou:\"}" \
       $SLACK_WEBHOOK_URL
 # curl -s -X POST -H 'Content-Type: application/json' \
 #       -d "{\"text\":\"$RIDGEPOLE_APPLY_LOG\",\"icon_emoji\":\":release_shiyou:\"}" \
