@@ -15,4 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: sh test
-        run: sh .github/workflows/bin/test.sh
+        run: sh .github/workflows/bin/test2.sh
