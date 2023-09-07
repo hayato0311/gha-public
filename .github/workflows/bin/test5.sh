@@ -5,10 +5,12 @@ echo "Apply Schemafile" >> $tmpfile
 echo "[ERROR] Mysql2::Error: Invalid use of NULL value" >> $tmpfile
 echo "Finished ridgepole apply." >> $tmpfile
 
-RIDGEPOLE_APPLY_LOG=$(cat $tmpfile | sed 's/%/%25/g' | sed 's/\r/%0D/g' | sed 's/\n/%0A/g' | sed 's/`/%60/g' | sed 's/::/%3A%3A/g' | sed 's/" /%22/g' | sed 's/ /%20/g')
+RIDGEPOLE_APPLY_LOG=$(cat $tmpfile)
 
 echo "$RIDGEPOLE_APPLY_LOG"
 
-echo "RIDGEPOLE_APPLY_LOG=$RIDGEPOLE_APPLY_LOG" >> $GITHUB_OUTPUT
+curl -s -X POST -H 'Content-Type: application/json' \
+      -d "{\"text\":\"$RIDGEPOLE_APPLY_LOG\",\"icon_emoji\":\":release_shiyou:\"}" \
+      $SLACK_WEBHOOK_URL
 
 rm $tmpfile
