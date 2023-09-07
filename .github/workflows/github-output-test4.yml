@@ -1,4 +1,4 @@
-name: Github Output Test1
+name: Github Output Test4
 
 on:
   workflow_dispatch:
@@ -15,4 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: sh test
-        run: sh .github/workflows/bin/test1.sh
+        run: sh .github/workflows/bin/test4.sh

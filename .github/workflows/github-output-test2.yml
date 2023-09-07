@@ -1,4 +1,4 @@
-name: Github Output Test
+name: Github Output Test2
 
 on:
   workflow_dispatch:
