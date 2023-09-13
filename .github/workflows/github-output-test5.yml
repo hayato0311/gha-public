@@ -15,6 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: sh test
-        run: sh .github/workflows/bin/test5.sh
+        run: /bin/bash .github/workflows/bin/test5.sh
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
