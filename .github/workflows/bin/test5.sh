@@ -21,6 +21,8 @@ echo "-- create_table("projects", {:charset=>"utf8mb4", :collation=>"utf8mb4_gen
 echo "   -> 0.2954s" >> $tmpfile
 echo "-- add_index("project_options", ["project_id"], {:unique=>true, :name=>"idx_project_option_1"})" >> $tmpfile
 echo "   -> 0.1370s" >> $tmpfile
+echo "-- add_foreign_key("project_options", "projects", {:name=>"fk_project_options_1"})" >> $tmpfile
+echo "   -> 0.1370s" >> $tmpfile
 echo "Finished ridgepole apply." >> $tmpfile
 
 RIDGEPOLE_APPLY_LOG=$(cat $tmpfile)
