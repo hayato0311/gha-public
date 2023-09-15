@@ -10,8 +10,25 @@ RIDGEPOLE_APPLY_LOG=$(cat $tmpfile)
 curl -s -X POST -H 'Content-Type: application/json' \
       -d "{\"text\":\"$RIDGEPOLE_APPLY_LOG\",\"icon_emoji\":\":release_shiyou:\"}" \
       $SLACK_WEBHOOK_URL
-# curl -s -X POST -H 'Content-Type: application/json' \
-#       -d "{\"text\":\"$RIDGEPOLE_APPLY_LOG\",\"icon_emoji\":\":release_shiyou:\"}" \
-#       $SLACK_WEBHOOK_URL
 
 rm $tmpfile
+
+tmpfile=$(mktemp)
+
+echo "Starting ridgepole apply..." >> $tmpfile
+echo "Apply Schemafile" >> $tmpfile
+echo "-- create_table("projects", {:charset=>"utf8mb4", :collation=>"utf8mb4_general_ci"})" >> $tmpfile
+echo "   -> 0.2954s" >> $tmpfile
+echo "-- add_index("project_options", ["project_id"], {:unique=>true, :name=>"idx_project_option_1"})" >> $tmpfile
+echo "   -> 0.1370s" >> $tmpfile
+echo "Finished ridgepole apply." >> $tmpfile
+
+RIDGEPOLE_APPLY_LOG=$(cat $tmpfile)
+
+curl -s -X POST -H 'Content-Type: application/json' \
+      -d "{\"text\":\"$RIDGEPOLE_APPLY_LOG\",\"icon_emoji\":\":release_shiyou:\"}" \
+      $SLACK_WEBHOOK_URL
+
+rm $tmpfile
+
+
