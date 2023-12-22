@@ -1,4 +1,4 @@
-name: rebase
+name: hoge
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  rebase-main:
+  hoge-main:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
