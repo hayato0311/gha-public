@@ -14,7 +14,6 @@ jobs:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - name: Slack notification for ridgepole apply log
-        working-directory: .github/workflows/bin
-        run: /bin/bash hoge.sh
+        run: /bin/bash .github/workflows/bin/hoge.sh
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
