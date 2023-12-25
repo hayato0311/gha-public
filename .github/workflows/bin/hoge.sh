@@ -2,10 +2,10 @@
 
 tmpfile=$(mktemp)
 
-"hoge" >> $tmpfile
-"hoge" >> $tmpfile
-"hoge" >> $tmpfile
-"hoge" >> $tmpfile
+echo "hoge" >> $tmpfile
+echo "hoge" >> $tmpfile
+echo "hoge" >> $tmpfile
+echo "hoge" >> $tmpfile
 
 HOGE_LOG=$(cat $tmpfile)
 
