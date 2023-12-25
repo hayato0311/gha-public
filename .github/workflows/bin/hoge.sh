@@ -2,14 +2,14 @@
 
 tmpfile=$(mktemp)
 
-echo "hoge\n" >> $tmpfile
+echo "hoge\r\n" >> $tmpfile
 echo "hoge" >> $tmpfile
 echo "hoge" >> $tmpfile
 echo "hoge" >> $tmpfile
 
 HOGE_LOG=$(cat $tmpfile)
 
-echo "Ridgepole apply log:"
+echo "Hoge log:"
 echo "$HOGE_LOG"
 
 curl -s -X POST -H 'Content-Type: application/json' \
