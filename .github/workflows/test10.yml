@@ -10,8 +10,6 @@ permissions:
 jobs:
   hoge-main:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - name: Slack notification for ridgepole apply log
         run: /bin/bash .github/workflows/bin/test10.sh
