@@ -2,8 +2,8 @@
 
 tmpfile=$(mktemp)
 
-echo "hoge\r" >> $tmpfile
-echo "hoge" >> $tmpfile
+echo "hoge  " >> $tmpfile
+echo "  hoge" >> $tmpfile
 echo "hoge" >> $tmpfile
 echo "hoge" >> $tmpfile
 
