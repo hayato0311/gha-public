@@ -1,4 +1,4 @@
-name: test10
+name: hoge
 
 on:
   workflow_dispatch:
@@ -11,7 +11,8 @@ jobs:
   hoge-main:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Slack notification for ridgepole apply log
-        run: /bin/bash .github/workflows/bin/test10.sh
+        run: /bin/bash .github/workflows/bin/hoge.sh
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
