@@ -4,7 +4,7 @@ tmpfile=$(mktemp)
 
 echo "\"hoge\"" >> $tmpfile
 
-HOGE_LOG=$(cat $tmpfile)
+HOGE_LOG=$(cat $tmpfile | sed "s/\"/'/g")
 
 echo "Hoge log:"
 echo "$HOGE_LOG"
