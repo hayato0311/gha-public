@@ -2,7 +2,7 @@
 
 tmpfile=$(mktemp)
 
-echo "-- create_table(\"internal_management_user_sessions\"" >> $tmpfile
+echo "\"hoge\"" >> $tmpfile
 
 HOGE_LOG=$(cat $tmpfile)
 
