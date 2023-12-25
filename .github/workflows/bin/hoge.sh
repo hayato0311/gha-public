@@ -2,7 +2,7 @@
 
 tmpfile=$(mktemp)
 
-echo "hoge" >> $tmpfile
+echo "hoge\n" >> $tmpfile
 echo "hoge" >> $tmpfile
 echo "hoge" >> $tmpfile
 echo "hoge" >> $tmpfile
