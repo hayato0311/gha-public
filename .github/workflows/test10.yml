@@ -1,4 +1,4 @@
-name: hoge
+name: test10
 
 on:
   workflow_dispatch:
